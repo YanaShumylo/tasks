@@ -1,11 +1,11 @@
 // Обєкти
 // ОСНОВИ
 // Створення об'єкта: Створіть об'єкт person, який містить властивості ім'я, вік та професія.
-let person = [
-    { userName: "Yana" },
-    { age: 37 },
-    { profession: "IT" },
-];
+let person = {
+    userName: "Yana",
+    age: 37,
+    profession: "IT",
+};
 
 // Доступ до властивостей: Виведіть на консоль ім'я створеного об'єкта person.
 console.log(person);
@@ -20,12 +20,13 @@ if ("placeOfWork" in person)
 { console.log("Yes") };
 { console.log("No") };
 // Зведення декількох об'єктів: Створіть ще один об'єкт friend, який містить інформацію про вашого друга. Потім об'єднайте властивості об'єкта friend з об'єктом person.
-let friend = [
-{ userName: "Andrii" },
-    { age: 40 },
-    { profession: "soldier" },
-    { placeOfWork: "Armed" },
-]
+let friend = 
+{
+    userName: "Andrii",
+        age: 40,
+            profession: "soldier",
+                placeOfWork: "Armed",
+}
 let mergedPerson = { ...person, ...friend };
 console.log(mergedPerson);
 // Перебір властивостей: Виведіть всі властивості об'єкта person на консоль у вигляді ключ-значення.
