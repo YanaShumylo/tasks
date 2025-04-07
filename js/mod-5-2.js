@@ -475,36 +475,152 @@ const books = [
 // console.log(bookDesc);
 
 // Створити масив об'єктів, що містять лише назву та жанр кожної книжки, де жанр записаний у нижньому регістрі.
-const bookGenreTitle = books.map(book => {
-  return {
-    title: book.title,
-    genre: book.genre.toLowerCase() // Перетворюємо жанр на нижній регістр
-  };
-});
-console.log(bookGenreTitle);
-
-//         // _________________________________________________ 
-// Відсортувати книги за роком видання від найдавнішого до найновішого.
-// Відсортувати книги за ціною від найнижчої до найвищої.
-// Відсортувати книги за рейтингом від найнижчого до найвищого.
-// Відсортувати книги за назвою у алфавітному порядку (від А до Я).
-// Відсортувати книги за автором у зворотньому алфавітному порядку (від Z до A).
-// Відсортувати книги за жанром у алфавітному порядку, але книги одного жанру за назвою у зворотньому алфавітному порядку.
-// Відсортувати книги за назвою у алфавітному порядку, але книги з однаковою назвою за автором у зворотньому алфавітному порядку.
-// Відсортувати книги за ціною, але спочатку розташувати ті, які коштують менше 10 доларів, потім решту.
-// Відсортувати книги за рейтингом, але спочатку розташувати ті, які мають рейтинг 4.8 і вище, потім решту.
-// Відсортувати книги спочатку за жанром, а потім за роком видання.
+// const bookGenreTitle = books.map(book => {
+//   return {
+//     title: book.title,
+//     genre: book.genre.toLowerCase() // Перетворюємо жанр на нижній регістр
+//   };
+// });
+// console.log(bookGenreTitle);
 
 //         // _________________________________________________
-// Отримати всі книги, видані після 2000 року та відсортувати їх за рейтингом від найвищого до найнижчого, повернути лише назви.
+// // Відсортувати книги за роком видання від найдавнішого до найновішого.
+// const bookSortedYear = books.toSorted((a, b) => a.year - b.year);
+// console.log(bookSortedYear);
+
+// // Відсортувати книги за ціною від найнижчої до найвищої.
+// const bookSortedPrice = books.toSorted((a, b) => a.price - b.price);
+// console.log(bookSortedPrice);
+
+// // Відсортувати книги за рейтингом від найнижчого до найвищого.
+// const bookSortedRating = books.toSorted((a, b) => a.rating - b.rating);
+// console.log(bookSortedRating);
+
+// // Відсортувати книги за назвою у алфавітному порядку (від А до Я).
+// const bookSortedTitle = books.toSorted((a, b) => a.title.localeCompare(b.title));
+// console.log(bookSortedTitle);
+ 
+// // Відсортувати книги за автором у зворотньому алфавітному порядку (від Z до A).
+// const bookSortedTitle1 = books.toSorted((a, b) => b.title.localeCompare(a.title));
+// console.log(bookSortedTitle1);
+ 
+// // Відсортувати книги за жанром у алфавітному порядку, але книги одного жанру за назвою у зворотньому алфавітному порядку.
+// const bookSortedTitleGenre = books.toSorted((a, b) => {
+//   if (a.genre !== b.genre){
+//     return a.genre.localeCompare(b.genre);
+// }
+//   return b.title.localeCompare(a.title);
+// });
+// console.log(bookSortedTitleGenre);
+
+// // Відсортувати книги за назвою у алфавітному порядку, але книги з однаковою назвою за автором у зворотньому алфавітному порядку.
+// const bookSortedTitleAuthor = books.toSorted((a, b) => {
+//   if (a.title !== b.title) {
+//     return a.title.localeCompare(b.title);
+//   }
+//   return b.author.localeCompare(b.author);
+// });
+// console.log(bookSortedTitleAuthor);
+
+// // Відсортувати книги за ціною, але спочатку розташувати ті, які коштують менше 10 доларів, потім решту.
+// const SortedPrice1 = books.toSorted((a, b) => {
+//   if (a.price < 10 && b.price >= 10) {
+//     return -1; // a має бути перед b
+//   }
+//   if (a.price >= 10 && b.price < 10) {
+//     return 1; // b має бути перед a
+//   }
+//   // Якщо обидві ціни однакові за категорією (<10 або >=10), сортуємо за ціною
+//   return a.price - b.price;
+// });
+//  console.log(SortedPrice1);
+
+// // Відсортувати книги за рейтингом, але спочатку розташувати ті, які мають рейтинг 4.8 і вище, потім решту.
+// const bookRating1 = books.toSorted((a, b) => {
+//   if (a.rating >= 4.8 && b.rating < 4.8) { return -1; }
+//   if (a.rating < 4.8 && b.rating >= 4.8) { return 1; }
+//   return b.rating - a.rating;
+// });
+// console.log(bookRating1);
+
+// // Відсортувати книги спочатку за жанром, а потім за роком видання.
+// const bookSortedGenreYear = books.toSorted((a, b) => {
+// const genreComparison = a.genre.localeCompare(b.genre);
+//   if (genreComparison !== 0) {
+//     return genreComparison; // Якщо жанри різні, повертаємо результат порівняння
+//   }
+//   // Якщо жанри однакові, сортуємо за роком видання
+//   return a.year - b.year;
+// });
+// console.log(bookSortedGenreYear);
+
+
+//         // _________________________________________________
+// Отримати всі книги, видані після 1090 року та відсортувати їх за рейтингом від найвищого до найнижчого, повернути лише назви.
+const bookIsSortedYear = books
+  .filter(book => book.year > 1090)
+  .toSorted((a, b) => b.rating - a.rating)
+  .map(book => book.title);
+console.log(bookIsSortedYear);
+
 // Отримати всі книги, автором яких є 'Fyodor Dostoevsky', відсортувати їх за роком видання від найдавнішого до найновішого та вивести перші 5 книг.
+const bookIsSortedAuthor = books
+  .filter(book => book.author === 'Fyodor Dostoevsky')
+  .toSorted((a, b) => a.year - b.year)
+  .slice(0, 5);
+  console.log(bookIsSortedAuthor);
+  
 // Отримати всі книги з ціною меншою ніж 10 доларів, відсортувати їх за ціною від найнижчої до найвищої та вивести назви книг.
+const bookIsSortedPrice = books
+  .filter(book => book.price < 10)
+  .toSorted((a, b) => a.price - b.price)
+  .map(book => book.title);
+  console.table(bookIsSortedPrice);
+  
 // Отримати всі книги з рейтингом 4.8 і вище, відсортувати їх за автором у зворотньому алфавітному порядку та вивести авторів унікальних книг.
+const bookIsSortedRating = books
+  .filter(book => book.rating >= 4.8)
+  .toSorted((a, b) => b.author.localeCompare(a.author))
+  .map(book => book.author)
+  .filter((value, index, self) => self.indexOf(value) === index);  // Видаляємо дублікати
+  console.log(bookIsSortedRating);
+  
 // Отримати всі книги жанру 'Romance' з ціною меншою ніж 8 доларів та відсортувати їх за рейтингом від найвищого до найнижчого.
+const bookIsSortedRomance = books
+  .filter(book => book.genre === 'Romance')
+  .filter(book => book.price < 8)
+  .toSorted((a, b) => b.rating - a.rating);
+  console.log(bookIsSortedRomance);
+  
 // Отримати всі книги, видані до 1900 року, відсортувати їх за рейтингом від найвищого до найнижчого та вивести першу книгу.
+const isYear = books
+  .filter(book => book.year < 1900)
+  .toSorted((a, b) => b.rating - a.rating)
+  .slice(0, 1);
+  console.log(isYear);
+  
 // Отримати всі книги, що містять слово 'and' у назві, відсортувати їх за роком видання від найдавнішого до найновішого та вивести останню книгу.
+const isTitleAnd = books
+  .filter(book => book.title.includes('and'))
+  .toSorted((a, b) => a.year - b.year)
+  .slice(-1);
+console.log(isTitleAnd);
 // Отримати всі книги, автором яких є 'J.R.R. Tolkien', відсортувати їх за рейтингом від найвищого до найнижчого та вивести середній рейтинг.
+const isAuthorTolkien = books
+  .filter(book => book.author === 'J.R.R. Tolkien')
+  .toSorted((a, b) => b.rating - a.rating)
+const sumRating = isAuthorTolkien.reduce((sum, book) => sum + book.rating, 0) / isAuthorTolkien.length;
+console.log(isAuthorTolkien);
+console.log(sumRating);
+
 // Отримати всі книги жанру 'Historical' з рейтингом вище 4.7, відсортувати їх за роком видання від найдавнішого до найновішого та вивести останні 3 книги.
+const isGenreHistorical = books
+  .filter(book => book.genre === 'Historical')
+  .filter(book => book.rating > 4.7)
+  .toSorted((a, b) => a.year - b.year)
+  .slice(-3);
+  console.log(isGenreHistorical);
+  
 //                 // _________________________________________________ 
 
                         // _________________________________________________ 
